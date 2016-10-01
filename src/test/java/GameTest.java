@@ -29,27 +29,13 @@ public class GameTest {
     @Test
     public void shouldDrawBoardWhenGameStarts() throws Exception {
         game.start();
-        verify(board).draw();
+        verify(board, atLeast(1)).draw();
     }
 
     @Test
     public void shouldPromptUserToMakeMoveAfterBoardIsPrinted() throws Exception {
         game.start();
         verify(printStream).println("Player 1: Please input a number 1-9");
-    }
-
-    @Test
-    public void shouldCaptureDesiredLocationWhenPlayer1InputsNumber() throws Exception {
-        game.start();
-        verify(player).makeMove();
-    }
-
-
-    @Test
-    public void shouldDrawBoardWhenUserMakesMove() throws Exception {
-        game.start();
-        player.makeMove();
-        verify(board,times(2)).draw();
     }
 
     @Test
@@ -61,6 +47,6 @@ public class GameTest {
     @Test
     public void shouldCaptureDesiredLocationWhenPlayer2InputsNumber() throws Exception {
         game.start();
-        verify(player, times(2)).makeMove();
+        verify(player, times(2)).makeMove(anyString());
     }
 }

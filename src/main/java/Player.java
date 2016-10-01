@@ -6,19 +6,21 @@ import java.io.IOException;
  */
 public class Player {
     private BufferedReader bufferedReader;
+    private Board board;
 
-    public Player(BufferedReader bufferedReader) {
-
+    public Player(BufferedReader bufferedReader, Board board) {
         this.bufferedReader = bufferedReader;
+        this.board = board;
     }
 
-    public int makeMove() {
+    public void makeMove(String mark) {
         String location = "1";
         try {
             location = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return Integer.parseInt(location);
+        int indexToUpdate = Integer.parseInt(location);
+        board.updateBoard(indexToUpdate,mark);
     }
 }
