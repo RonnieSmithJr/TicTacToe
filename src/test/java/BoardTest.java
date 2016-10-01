@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -35,13 +36,14 @@ public class BoardTest {
     }
 
     @Test
-    public void shouldUpdateBoardWhenPlayerMakesMove() throws Exception {
+    public void shouldUpdateBoardWithMarkWhenPlayer1MakesMove() throws Exception {
         board.updateBoard(1, "X");
-        verify(printStream).println("X|2|3\n" +
-                                    "-----\n" +
-                                    "4|5|6\n" +
-                                    "-----\n" +
-                                    "7|8|9");
+        assertEquals(listOfBoardCells.get(0), "X");
+    }
 
+    @Test
+    public void shouldUpdateBoardWithMarkWhenPlayer2MakesMove() throws Exception {
+        board.updateBoard(1,"O");
+        assertEquals(listOfBoardCells.get(0), "O");
     }
 }

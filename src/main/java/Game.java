@@ -21,5 +21,8 @@ public class Game {
         board.updateBoard(location, "X");
         board.draw();
         printStream.println("Player 2: Please input a number 1-9");
+        location = player.makeMove();
+        board.updateBoard(location, "O");
+        board.draw();
     }
 }

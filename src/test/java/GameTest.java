@@ -39,7 +39,7 @@ public class GameTest {
     }
 
     @Test
-    public void shouldCaptureDesiredLocationWhenUserInputsNumber() throws Exception {
+    public void shouldCaptureDesiredLocationWhenPlayer1InputsNumber() throws Exception {
         game.start();
         verify(player).makeMove();
     }
@@ -56,5 +56,11 @@ public class GameTest {
     public void shouldPromptUserToMakeMoveAfterOtherPlayerCompletesMove() throws Exception {
         game.start();
         verify(printStream).println("Player 2: Please input a number 1-9");
+    }
+
+    @Test
+    public void shouldCaptureDesiredLocationWhenPlayer2InputsNumber() throws Exception {
+        game.start();
+        verify(player, times(2)).makeMove();
     }
 }
