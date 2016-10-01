@@ -6,6 +6,7 @@ import java.io.PrintStream;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by ronnie on 9/30/16.
@@ -37,7 +38,12 @@ public class GameTest {
     public void shouldPromptUserToMakeMoveAfterBoardIsPrinted() throws Exception {
         game.start();
         verify(printStream).println("Please input a number 1-9");
+    }
 
+    @Test
+    public void shouldCaptureDesiredLocationWhenUserInputsNumber() throws Exception {
+        game.start();
+        verify(player).makeMove();
     }
 
 

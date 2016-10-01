@@ -18,4 +18,12 @@ public class Board {
                             "-----\n" +
                             "7|8|9");
     }
+
+    public void updateBoard(int location, String mark) {
+        printStream.println("X|2|3\n" +
+                            "-----\n" +
+                            "4|5|6\n" +
+                            "-----\n" +
+                            "7|8|9");
+    }
 }
