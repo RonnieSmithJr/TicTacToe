@@ -4,9 +4,7 @@ import org.junit.Test;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by ronnie on 9/30/16.
@@ -47,4 +45,11 @@ public class GameTest {
     }
 
 
+    @Test
+    public void shouldDrawBoardWhenUserMakesMove() throws Exception {
+        game.start();
+        player.makeMove();
+        verify(board,times(2)).draw();
+
+    }
 }

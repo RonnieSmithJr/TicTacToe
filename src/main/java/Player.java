@@ -13,7 +13,6 @@ public class Player {
     }
 
     public int makeMove() {
-
         String location = "1";
         try {
             location = bufferedReader.readLine();
