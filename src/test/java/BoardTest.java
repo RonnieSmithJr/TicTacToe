@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by ronnie on 9/30/16.
@@ -46,4 +45,28 @@ public class BoardTest {
         board.updateBoard(1,"O");
         assertEquals(listOfBoardCells.get(0), "O");
     }
+
+    @Test
+    public void shouldNotUpdateBoardWhenUserIsMarkingTakenLocation() throws Exception {
+        listOfBoardCells = Arrays.asList("X","2","3","4","5","6","7","8","9");
+        board = new Board(printStream, listOfBoardCells);
+        board.updateBoard(1,"O");
+        assertEquals(listOfBoardCells.get(0), "X");
+    }
+
+    @Test
+    public void shouldPromptPlayerToTryAgainWhenMarkingTakenLocation() throws Exception {
+        listOfBoardCells = Arrays.asList("X","2","3","4","5","6","7","8","9");
+        board = new Board(printStream, listOfBoardCells);
+        board.updateBoard(1, "O");
+        verify(printStream).println("That location is marked, please enter an unmarked location");
+    }
+
+//    @Test
+//    public void shouldContinuePromptingPlayerWhenMarkingTakenLocationUntilValidLocationIsEntered() throws Exception {
+//        listOfBoardCells = Arrays.asList("X","2","3","4","5","6","7","8","9");
+//        board.updateBoard(1, "O");
+//        board.updateBoard(1, "O");
+//        verify(printStream, atLeast(2)).println("That location is marked, please enter an unmarked location");
+//    }
 }
