@@ -16,9 +16,10 @@ public class Game {
 
     public void start() {
         board.draw();
-        printStream.println("Please input a number 1-9");
+        printStream.println("Player 1: Please input a number 1-9");
         int location = player.makeMove();
         board.updateBoard(location, "X");
         board.draw();
+        printStream.println("Player 2: Please input a number 1-9");
     }
 }

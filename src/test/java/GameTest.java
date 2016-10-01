@@ -35,7 +35,7 @@ public class GameTest {
     @Test
     public void shouldPromptUserToMakeMoveAfterBoardIsPrinted() throws Exception {
         game.start();
-        verify(printStream).println("Please input a number 1-9");
+        verify(printStream).println("Player 1: Please input a number 1-9");
     }
 
     @Test
@@ -50,6 +50,11 @@ public class GameTest {
         game.start();
         player.makeMove();
         verify(board,times(2)).draw();
+    }
 
+    @Test
+    public void shouldPromptUserToMakeMoveAfterOtherPlayerCompletesMove() throws Exception {
+        game.start();
+        verify(printStream).println("Player 2: Please input a number 1-9");
     }
 }
