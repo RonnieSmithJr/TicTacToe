@@ -23,11 +23,14 @@ public class Board {
     }
 
     public void updateBoard(int location, String mark) {
-        if(listOfBoardCells.get(location-1).equals("X") || listOfBoardCells.get(location-1).equals("O")){
-            printStream.println("That location is marked, please enter an unmarked location");
-        }
-        else {
             listOfBoardCells.set(location - 1, mark);
+    }
+
+    public boolean isLocationTaken(int location) {
+        if (listOfBoardCells.get(location - 1).equals("X") || listOfBoardCells.get(location - 1).equals("O")) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
