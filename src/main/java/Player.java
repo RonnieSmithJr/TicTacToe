@@ -20,19 +20,21 @@ public class Player {
 
     public void makeMove() {
         String location = "1";
-        try {
-            location = bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int indexToUpdate = Integer.parseInt(location);
-        if(board.isLocationTaken(indexToUpdate)){
-            printStream.println("This location is taken, please enter a valid location");
-        }
-        else{
-
-            board.updateBoard(indexToUpdate, mark);
-        }
+        boolean isLocationTaken = false;
+        do {
+            try {
+                location = bufferedReader.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            int indexToUpdate = Integer.parseInt(location);
+            isLocationTaken = board.isLocationTaken(indexToUpdate);
+            if (isLocationTaken) {
+                printStream.println("This location is taken, please enter a valid location");
+            } else {
+                board.updateBoard(indexToUpdate, mark);
+            }
+        } while(isLocationTaken);
 
     }
 }

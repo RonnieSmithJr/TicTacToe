@@ -1,4 +1,5 @@
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -87,4 +88,16 @@ public class PlayerTest {
         verify(board).updateBoard(anyInt(), anyString());
     }
 
+    @Test
+    @Ignore
+    public void shouldContinueToPromptPlayerToEnterInputWhenPlayerTriesToMarkTakenLocation() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1", "2");
+        when(board.isLocationTaken(anyInt())).thenReturn(true, false);
+        mark = "X";
+        player = new Player(bufferedReader, board, printStream, mark);
+
+        player.makeMove();
+
+        verify(board).updateBoard(2,mark);
+    }
 }
