@@ -9,14 +9,16 @@ public class Player {
     private BufferedReader bufferedReader;
     private Board board;
     private PrintStream printStream;
+    private String mark;
 
-    public Player(BufferedReader bufferedReader, Board board, PrintStream printStream) {
+    public Player(BufferedReader bufferedReader, Board board, PrintStream printStream, String mark) {
         this.bufferedReader = bufferedReader;
         this.board = board;
         this.printStream = printStream;
+        this.mark = mark;
     }
 
-    public void makeMove(String mark) {
+    public void makeMove() {
         String location = "1";
         try {
             location = bufferedReader.readLine();
@@ -28,7 +30,8 @@ public class Player {
             printStream.println("This location is taken, please enter a valid location");
         }
         else{
-            board.updateBoard(indexToUpdate,mark);
+
+            board.updateBoard(indexToUpdate, mark);
         }
 
     }

@@ -14,8 +14,9 @@ public class Main {
         List<String> listOfBoardCells = Arrays.asList("1","2","3","4","5","6","7","8","9");
         Board board = new Board(printStream, listOfBoardCells);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Player player = new Player(bufferedReader, board, printStream);
-        Game game = new Game(board, player, printStream);
+        Player player1 = new Player(bufferedReader, board, printStream, "X");
+        Player player2 = new Player(bufferedReader, board, printStream, "O");
+        Game game = new Game(board, player1,player2, printStream);
         game.start();
     }
 }

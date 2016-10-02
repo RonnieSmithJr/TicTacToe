@@ -15,15 +15,17 @@ public class GameTest {
 
     Board board;
     Game game;
-    private Player player;
+    private Player player1;
+    private Player player2;
     private PrintStream printStream;
 
     @Before
     public void setUp() throws Exception {
         printStream = mock(PrintStream.class);
         board = mock(Board.class);
-        player = mock(Player.class);
-        game = new Game(board, player, printStream);
+        player1 = mock(Player.class);
+        player2 = mock(Player.class);
+        game = new Game(board, player1, player2, printStream);
     }
 
     @Test
@@ -39,6 +41,12 @@ public class GameTest {
     }
 
     @Test
+    public void shouldCaptureDesiredLocationWhenPlayer1InputsNumber() throws Exception {
+        game.start();
+        verify(player1).makeMove();
+    }
+
+    @Test
     public void shouldPromptUserToMakeMoveAfterOtherPlayerCompletesMove() throws Exception {
         game.start();
         verify(printStream).println("Player 2: Please input a number 1-9");
@@ -47,6 +55,6 @@ public class GameTest {
     @Test
     public void shouldCaptureDesiredLocationWhenPlayer2InputsNumber() throws Exception {
         game.start();
-        verify(player, times(2)).makeMove(anyString());
+        verify(player2).makeMove();
     }
 }

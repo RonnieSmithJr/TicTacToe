@@ -19,35 +19,41 @@ public class PlayerTest {
     private Player player;
     private List<String> listOfBoardCells;
     private PrintStream printStream;
+    private String mark;
 
     @Before
     public void setUp() throws Exception {
         bufferedReader = mock(BufferedReader.class);
         board = mock(Board.class);
         printStream = mock(PrintStream.class);
-        player = new Player(bufferedReader, board, printStream);
+        mark = "X";
+        player = new Player(bufferedReader, board, printStream, mark);
     }
 
     @Test
     public void shouldGetUserInputWhenUserInputsNumber() throws Exception {
         BufferedReader bufferedReader = mock(BufferedReader.class);
-        Player player = new Player(bufferedReader, board, printStream);
+        Player player = new Player(bufferedReader, board, printStream,mark);
         when(bufferedReader.readLine()).thenReturn("1");
-        player.makeMove("X");
+        player.makeMove();
         verify(board).updateBoard(eq(1), anyString());
     }
 
     @Test
     public void shouldUpdateBoardWithMarkWhenPlayer1MakesMove() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
-        player.makeMove("X");
+        mark = "X";
+        player = new Player(bufferedReader, board, printStream, mark);
+        player.makeMove();
         verify(board).updateBoard(1, "X");
     }
 
     @Test
     public void shouldCheckIfLocationIsTakenWhenPlayerMakesMove() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
-        player.makeMove("X");
+        mark = "X";
+        player = new Player(bufferedReader, board, printStream, mark);
+        player.makeMove();
         verify(board).isLocationTaken(1);
     }
 
@@ -55,7 +61,9 @@ public class PlayerTest {
     public void shouldPromptPlayerWhenPlayerTriesToMarkTakenLocation() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
         when(board.isLocationTaken(1)).thenReturn(true);
-        player.makeMove("X");
+        mark = "X";
+        player = new Player(bufferedReader, board, printStream, mark);
+        player.makeMove();
         verify(printStream).println("This location is taken, please enter a valid location");
     }
 
@@ -63,7 +71,9 @@ public class PlayerTest {
     public void shouldNotUpdateBoardWhenPlayerTriesToMarkTakenLocation() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
         when(board.isLocationTaken(1)).thenReturn(true);
-        player.makeMove("X");
+        mark = "X";
+        player = new Player(bufferedReader, board, printStream, mark);
+        player.makeMove();
         verify(board, times(0)).updateBoard(anyInt(), anyString());
     }
 
@@ -71,12 +81,10 @@ public class PlayerTest {
     public void shouldUpdateBoardWhenPlayerTriesToMarkOpenLocation() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
         when(board.isLocationTaken(1)).thenReturn(false);
-        player.makeMove("X");
+        mark = "X";
+        player = new Player(bufferedReader, board, printStream, mark);
+        player.makeMove();
         verify(board).updateBoard(anyInt(), anyString());
     }
 
-    @Test
-    public void should() throws Exception {
-
-    }
 }
